@@ -28,3 +28,12 @@
     /* need to make text 100% width of choice so no matter where we click on the box we'll alert the user event. */
     width: 100%;
 }
+
+/* adding styling to different classes depending on whether correct or incorrect. Using color codes from CSS bootstrap */
+.correct{
+    background-color: #28a745;
+}
+
+.incorrect{
+    background-color: #dc3545;
+}
