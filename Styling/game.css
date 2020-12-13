@@ -37,3 +37,18 @@
 .incorrect{
     background-color: #dc3545;
 }
+
+/* styling for score/queston display */
+#displayScore{
+    display: flex;
+    justify-content: space-between;
+}
+
+.displayScore-prefix{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.displayScore-main-text{
+    text-align: center;
+}
