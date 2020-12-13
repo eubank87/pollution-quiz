@@ -19,7 +19,7 @@ var questionTracker = 0;
 var availableQuestions = [];
 
 // variable for quiz questions; set as a set of objects inside of an array
-var quizQuestions = [
+var quizInformation = [
     {
         question: "What are the 3 main types of pollution humans contribute to every day?",
         choice1: "sugar, fat & salt",
@@ -61,3 +61,23 @@ var quizQuestions = [
         answer: 4
     }
 ]
+
+// variable for score increase
+var scoreIncrease = 10;
+// variable for total amount of questions in quiz to display on screen for question tracker
+var totalQuestions = 5;
+
+// function to start the game var quizQuestions 
+function startGame (){
+    // initially set score and question tracker to 0
+    questionTracker = 0;
+    score = 0;
+    // calling the availableQuestions array. Used the spread operator (...) so the quizInformation array can spread it's objects out and then rejoined as an array
+    availableQuestions = [...quizInformation];
+    // console.log("available questions:", availableQuestions);
+    // calling function to generate new question
+    generateNewQuestion();
+};
+
+
+startGame();
