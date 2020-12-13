@@ -1,0 +1,17 @@
+/* styling for entire container with answer options */
+.choice-container{
+    display: flex;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    font-size: 1.8rem;
+    border: 0.1rem solid rgba(156, 86, 235, 0.25);
+    background-color: white;
+}
+
+/* need to add style elements for hover state like buttons */
+.choice-container:hover{
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgb(143, 4, 143, 235);
+    transform: translateY(-0.5rem);
+    transition: 150ms;
+}
