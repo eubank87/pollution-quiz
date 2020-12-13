@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You did it!</title>
+    <link rel="stylesheet" href="Styling/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="endOfGame" class="flex-center flex-column">
+            <h1 id="finalScore">0</h1>
+            <!-- placed a form into this div so user can enter score info. Deleted default action so we can set up ourselves in js -->
+            <form>
+                <!-- created input field to save username -->
+                <input type="text" name="username" id="username" placeholder="username">
+                <!-- created a submit button with same class as other buttons for styling, but also gave id of saveHighScoreBtn to use as reference in js later on. Also added and "onclick" event to a function that is written in js for saving high scores. Finally, set button to disabled to prevent saving empty input fields. -->
+                <button type="submit" class="btn" id="saveHighScoreBtn" onclick="saveHighScore(event)" disabled>Save Score</button>
+            </form>
+            <!-- added links to redirect to different pages -->
+            <a class="btn" href="game.html">Play Again</a>
+            <a class="btn" href="index.html">Homepage</a>
+        </div>
+    </div>
+    
+
+    <script src="Javascript/endofgame.js"></script>
+</body>
+</html>
