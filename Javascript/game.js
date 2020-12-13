@@ -91,10 +91,11 @@ function generateNewQuestion(){
     questionTrackerText.innerText = questionTracker + "/" + totalQuestions;
 
     // variable for question index to generate random question from available questions array
-    var questionIndex = math.floor(Math.random() * availableQuestions.length);
+    var questionIndex = Math.floor(Math.random() * availableQuestions.length);
     // setting current question to a random index within the availabe questions array
     currentQuestion = availableQuestions[questionIndex];
-    quizQuestion.innerText = currentQuestion.quizQuestion;
+    quizQuestion.innerText = currentQuestion.question;
+    // console.log("quiz question", quizQuestion);
 
     // following same principle for answer selections usinf forEach method
     answerSelections.forEach(answerSelection =>{
@@ -103,6 +104,10 @@ function generateNewQuestion(){
         // printing selections to the screen that match with corresponding text 
         answerSelection.innerText = currentQuestion["answerSelection" + number];
     });
+    // splicing out question that was used so it doesn't repeat
+    availableQuestions.splice(questionIndex, 1);
+    // Now that question is loaded, set gamePlay to true
+    gamePlay = true;
 };
 
 
