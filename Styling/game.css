@@ -1,5 +1,5 @@
 /* styling for entire container with answer options */
-.choice-container{
+.answerSelection{
     display: flex;
     margin-bottom: 0.5rem;
     width: 100%;
@@ -9,9 +9,22 @@
 }
 
 /* need to add style elements for hover state like buttons */
-.choice-container:hover{
+.answerSelection:hover{
     cursor: pointer;
     box-shadow: 0 0.4rem 1.4rem 0 rgb(143, 4, 143, 235);
     transform: translateY(-0.5rem);
     transition: 150ms;
+}
+
+/* now we'll style the answer choices within the container to have their own properties */
+.answerSelection-prefix{
+    padding: 1.5rem 2.5rem;
+    background-color: #852ecc;
+    color: white;
+}
+
+.answerSelection-text{
+    padding: 1.5rem;
+    /* need to make text 100% width of choice so no matter where we click on the box we'll alert the user event. */
+    width: 100%;
 }
