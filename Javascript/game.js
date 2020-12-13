@@ -85,7 +85,16 @@ function generateNewQuestion(){
         // before redirecting, user score is saved to local storage
         localStorage.setItem("newestScore", score);
         return window.location.assign("end.html");
-    }
+    };
+    // increasing question tracker by 1 with each new question generated and updating text
+    questionTracker++;
+    questionTrackerText.innerText = questionTracker + "/" + totalQuestions;
+
+    // variable for question index to generate random question from available questions array
+    var questionIndex = math.floor(Math.random() * availableQuestions.length);
+    // setting current question to a random index within the availabe questions array
+    currentQuestion = availableQuestions[questionIndex];
+    quizQuestion.innerText = currentQuestion.quizQuestion;
 };
 
 
