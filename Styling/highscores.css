@@ -1,0 +1,17 @@
+#highScoresList{
+    /* change list style to none to get rid og bullet points that show up by default */
+    list-style: none;
+    /* set oadding to 0 to compensate for lack of bullets */
+    padding-left: 0;
+    /* give the bottom a small margin to create space bewteen scores. */
+    margin-bottom: 4rem;
+}
+
+.high-score{
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.high-score:hover{
+    transform: scale(1.025);
+}
