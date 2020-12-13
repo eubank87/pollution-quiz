@@ -22,42 +22,42 @@ var availableQuestions = [];
 var quizInformation = [
     {
         question: "What are the 3 main types of pollution humans contribute to every day?",
-        choice1: "sugar, fat & salt",
-        choice2: "cotton, silk & wool",
-        choice3: "land, air & water",
-        choice4: "aluminum, steel & titanium",
+        answerSelection1: "sugar, fat & salt",
+        answerSelection2: "cotton, silk & wool",
+        answerSelection3: "land, air & water",
+        answerSelection4: "aluminum, steel & titanium",
         answer: 3
     },
     {
         question: "Most air pollution comes from...",
-        choice1: "deflated helium balloons",
-        choice2: "burning fossil fuels",
-        choice3: "large choirs singing all at once",
-        choice4: "baking cookies",
+        answerSelection1: "deflated helium balloons",
+        answerSelection2: "burning fossil fuels",
+        answerSelection3: "large choirs singing all at once",
+        answerSelection4: "baking cookies",
         answer: 2
     },
     {
         question: "What is global warming?",
-        choice1: "A steady rise in the Earth's average temperature.",
-        choice2: "A day we celebrate winter coats.",
-        choice3: "A made up hoax by the liberal media.",
-        choice4: "An art installation in NYC.",
+        answerSelection1: "A steady rise in the Earth's average temperature.",
+        answerSelection2: "A day we celebrate winter coats.",
+        answerSelection3: "A made up hoax by the liberal media.",
+        answerSelection4: "An art installation in NYC.",
         answer: 1
     },
     {
         question: "Each year an average of _______ gallons of untreated sewage waste, stormwater and industrail chemical waste are dumped into US water.",
-        choice1: "1,000",
-        choice2: "80 million",
-        choice3: "5",
-        choice4: "1.2 trillion",
+        answerSelection1: "1,000",
+        answerSelection2: "80 million",
+        answerSelection3: "5",
+        answerSelection4: "1.2 trillion",
         answer: 4
     },
     {
         question: "Something small I can do to help pollution is...",
-        choice1: "recycle.",
-        choice2: "bring my own shopping bags to the grocery store.",
-        choice3: "use a reusable water bottle instead of buying a new plastic one every time.",
-        choice4: "All of the above.",
+        answerSelection1: "recycle.",
+        answerSelection2: "bring my own shopping bags to the grocery store.",
+        answerSelection3: "use a reusable water bottle instead of buying a new plastic one every time.",
+        answerSelection4: "All of the above.",
         answer: 4
     }
 ]
@@ -95,6 +95,14 @@ function generateNewQuestion(){
     // setting current question to a random index within the availabe questions array
     currentQuestion = availableQuestions[questionIndex];
     quizQuestion.innerText = currentQuestion.quizQuestion;
+
+    // following same principle for answer selections usinf forEach method
+    answerSelections.forEach(answerSelection =>{
+        // variable to reference data-set in html 
+        var number = answerSelection.dataset["number"];
+        // printing selections to the screen that match with corresponding text 
+        answerSelection.innerText = currentQuestion["answerSelection" + number];
+    });
 };
 
 
