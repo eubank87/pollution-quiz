@@ -2,7 +2,7 @@
 var quizQuestion = document.getElementById("question");
 // used the method Array.from to run the html elements from string to array. Wanted to grab multiple items so used "getElementsByClassName" vs. "getElementById."
 var answerSelections = Array.from(document.getElementsByClassName("answerSelection-text"));
-console.log(answerSelections);
+// console.log("answer selections:", answerSelections);
 //variables to call html items for score/question display
 var questionTrackerText = document.getElementById("questionTracker");
 var scoreCount = document.getElementById("score");
@@ -77,6 +77,15 @@ function startGame (){
     // console.log("available questions:", availableQuestions);
     // calling function to generate new question
     generateNewQuestion();
+};
+
+function generateNewQuestion(){
+    // created conditional so that if there are no more questions in the availableQuestions array or if the question tracker goes above 5(total number of questions), user will be redirected to the end of the game
+    if(availableQuestions === 0 || questionTracker >= 5){
+        // before redirecting, user score is saved to local storage
+        localStorage.setItem("newestScore", score);
+        return window.location.assign("end.html");
+    }
 };
 
 
