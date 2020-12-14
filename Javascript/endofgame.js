@@ -16,6 +16,12 @@ finalScore.innerText = newestScore;
 playerName.addEventListener("keyup", () =>{
     // console.log("player name:", playerName.value);
     // created conditional so save score button is disabled until input field is filled out
-    saveHighScoreBtn.disabled = !playerName.nodeValue; 
+    saveHighScoreBtn.disabled = !playerName.value; 
 });
 
+// function used to save high score- called in html for end of game
+function saveHighScore(e){
+    // console.log("clicked save button"); 
+    e.preventDefault();
+    
+}
