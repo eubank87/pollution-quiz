@@ -140,8 +140,14 @@ answerSelections.forEach(answerSelection =>{
             generateNewQuestion();
         }, 400);
         // console.log(chosenAnswer == currentQuestion.answer);
-    })
-})
+    });
+});
+
+// function to increase score and update score text on screen
+increaseScore = num =>{
+    score +=num;
+    scoreCount.innerText = score;
+};
 
 
 startGame();
