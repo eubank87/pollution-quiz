@@ -45,7 +45,7 @@ var quizInformation = [
         answer: 1
     },
     {
-        question: "Each year an average of _______ gallons of untreated sewage waste, stormwater and industrail chemical waste are dumped into US water.",
+        question: "Each year an average of _______ gallons of untreated sewage waste, stormwater and industrial chemical waste are dumped into US water.",
         answerSelection1: "1,000",
         answerSelection2: "80 million",
         answerSelection3: "5",
@@ -53,10 +53,10 @@ var quizInformation = [
         answer: 4
     },
     {
-        question: "Something small I can do to help pollution is...",
+        question: "Something small I can do to help protect our planet is...",
         answerSelection1: "recycle.",
         answerSelection2: "bring my own shopping bags to the grocery store.",
-        answerSelection3: "use a reusable water bottle instead of buying a new plastic one every time.",
+        answerSelection3: "carry a reusable water bottle with me instead of buying a new plastic one every time I'm thirsty.",
         answerSelection4: "All of the above.",
         answer: 4
     }
