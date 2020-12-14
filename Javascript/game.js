@@ -110,5 +110,29 @@ function generateNewQuestion(){
     gamePlay = true;
 };
 
+// using forEach method again to add an event listener to each answer selection
+answerSelections.forEach(answerSelection =>{
+    answerSelection.addEventListener("click", e =>{
+        // conditional to ignore event listener until game play is allowed
+        if(!gamePlay){
+            return
+        };
+        gamePlay = false;
+
+        // variables added so click event can be interpreted as user's answer and then verified further down. use dataset from html to track
+        var chosenSelection = e.target;
+        var chosenAnswer = chosenSelection.dataset["number"];
+
+        // variable to apply color depending on right/wrong answer
+        var rightOrWrong = "wrong";
+        // conditional so if answer selected is right, default state of wrong is changed along with corresponding background color from css styling and score is increased
+        if(chosenAnswer == currentQuestion.answer){
+            rightOrWrong = "right";
+            increaseScore(scoreIncrease);
+        };
+        console.log(rightOrWrong);
+    })
+})
+
 
 startGame();

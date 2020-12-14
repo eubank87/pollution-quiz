@@ -30,11 +30,11 @@
 }
 
 /* adding styling to different classes depending on whether correct or incorrect. Using color codes from CSS bootstrap */
-.correct{
+.right{
     background-color: #28a745;
 }
 
-.incorrect{
+.wrong{
     background-color: #dc3545;
 }
 
