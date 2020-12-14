@@ -130,7 +130,16 @@ answerSelections.forEach(answerSelection =>{
             rightOrWrong = "right";
             increaseScore(scoreIncrease);
         };
-        console.log(rightOrWrong);
+        // console.log("right or wrong", rightOrWrong);
+
+        // apply class change listed above to parent element of chosenSelection
+        chosenSelection.parentElement.classList.add(rightOrWrong);
+        // remove class change when a new question is generated with small delay so it's noticable
+        setTimeout(() => {
+            chosenSelection.parentElement.classList.remove(rightOrWrong);
+            generateNewQuestion();
+        }, 400);
+        // console.log(chosenAnswer == currentQuestion.answer);
     })
 })
 
