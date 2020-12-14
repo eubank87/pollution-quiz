@@ -23,5 +23,25 @@ playerName.addEventListener("keyup", () =>{
 function saveHighScore(e){
     // console.log("clicked save button"); 
     e.preventDefault();
-    
-}
+
+    // variable to combine new score value with player name
+    var score = {
+        score: newestScore,
+        name: playerName.value
+    };
+    // console.log("score:", score); 
+    // added info to high scores in local storage
+    highScores.push(score);
+    // console.log("high scores:", highScores); 
+
+    // sorted high scores to display highest score first
+    highScores.sort((a, b => b.score - a.score));
+    // spliced high scores array to only display 5 scores total
+    highScores.splice(5);
+
+    // updated local storage
+    localStorage.setItem("highScore", JSON.stringify(highScores));
+
+    // after high score is saved, we redirect to high scores page
+    window.location.assign("highscores.html");
+};
