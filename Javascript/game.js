@@ -5,14 +5,21 @@ var answerSelections = Array.from(document.getElementsByClassName("answerSelecti
 // console.log("answer selections:", answerSelections);
 //variables to call html items for score/question display
 var questionTrackerText = document.getElementById("questionTracker");
-var scoreCount = document.getElementById("score");
+// TODO: var scoreCount = document.getElementById("score");
+
+// TODO:
+var gameTimer = document.getElementById("game-timer");
+var timerValue = document.getElementById("timer-value");
+var timer = 0;
+var scoreBonus = 10;
+var scorePenalty = -10;
 
 // variable with empty brackets for current question displayed- curly brackets created an object to work with later on
 var currentQuestion = {};
 // variable to use as conditional for creating delay in between questions. Set to false initially to prevent answers from being selected before next question is displayed
 var gamePlay = false;
 // variable to track score 
-var score = 0;
+// TODO: var score = 0; 
 // variable to track questions 
 var questionTracker = 0;
 // variable set to empty array for loop to use to generate random questions
@@ -63,7 +70,7 @@ var quizInformation = [
 ]
 
 // variable for score increase
-var scoreIncrease = 10;
+// TODO: var scoreIncrease = 10;
 // variable for total amount of questions in quiz to display on screen for question tracker
 var totalQuestions = 5;
 
@@ -71,21 +78,37 @@ var totalQuestions = 5;
 function startGame (){
     // initially set score and question tracker to 0
     questionTracker = 0;
-    score = 0;
-    // calling the availableQuestions array. Used the spread operator (...) so the quizInformation array can spread it's objects out and then rejoined as an array
+    // TODO:score = 0;
+    // TODO:
+    timer = 60;
+    gameTimer.innerText = "Time Remaining: ";
+    timerValue.innerText = timer;
+    var runningTimer = setInterval(() =>{
+        timer--;
+        gameTimer.innerText = "Time remaining: ";
+        timerValue.innerText = timer;
+
+        if(timer === 0 || availableQuestions === 0 || questionTracker >= 5){
+            clearInterval(runningTimer);
+            localStorage.setItem("newestScore", timer);
+            return window.location.assign("endofgame.html");
+        }
+    }, 1000);
+
+    // called the availableQuestions array. Used the spread operator (...) so the quizInformation array can spread it's objects out and then rejoined as an array
     availableQuestions = [...quizInformation];
     // console.log("available questions:", availableQuestions);
-    // calling function to generate new question
+    // called function to generate new question
     generateNewQuestion();
 };
 
 function generateNewQuestion(){
     // created conditional so that if there are no more questions in the availableQuestions array or if the question tracker goes above 5(total number of questions), user will be redirected to the end of the game
-    if(availableQuestions === 0 || questionTracker >= 5){
-        // before redirecting, user score is saved to local storage
-        localStorage.setItem("newestScore", score);
-        return window.location.assign("end.html");
-    };
+    // TODO: if(availableQuestions === 0 || questionTracker >= 5){
+    //     // before redirecting, user score is saved to local storage
+    //     localStorage.setItem("newestScore", score);
+    //     return window.location.assign("endofgame.html");
+    // };
     // increasing question tracker by 1 with each new question generated and updating text
     questionTracker++;
     questionTrackerText.innerText = questionTracker + "/" + totalQuestions;
@@ -126,11 +149,18 @@ answerSelections.forEach(answerSelection =>{
         // variable to apply color depending on right/wrong answer
         var rightOrWrong = "wrong";
         // conditional so if answer selected is right, default state of wrong is changed along with corresponding background color from css styling and score is increased
+        // TODO: if(chosenAnswer == currentQuestion.answer){
+        //     rightOrWrong = "right";
+        //     increaseScore(scoreIncrease);
+        // };
+        // console.log("right or wrong", rightOrWrong);
+
         if(chosenAnswer == currentQuestion.answer){
             rightOrWrong = "right";
-            increaseScore(scoreIncrease);
-        };
-        // console.log("right or wrong", rightOrWrong);
+            incrementTimer(scoreBonus);
+        }else{
+            incrementTimer(scorePenalty);
+        }
 
         // apply class change listed above to parent element of chosenSelection
         chosenSelection.parentElement.classList.add(rightOrWrong);
@@ -144,9 +174,14 @@ answerSelections.forEach(answerSelection =>{
 });
 
 // function to increase score and update score text on screen
-increaseScore = num =>{
-    score +=num;
-    scoreCount.innerText = score;
+// TODO: increaseScore = num =>{
+//     score +=num;
+//     scoreCount.innerText = score;
+// };
+// TODO:
+incrementTimer = num =>{
+    timer +=num;
+    timerValue.innerText = timer;
 };
 
 
