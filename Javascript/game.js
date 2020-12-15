@@ -75,19 +75,31 @@ var quizInformation = [
 // variable for total amount of questions in quiz to display on screen for question tracker
 var totalQuestions = 5;
 
+// created variable to show/hide intro screen and game play
+var userViewGame = document.getElementById("game-play");
+userViewGame.style.display = "none";
+
 // created click event to start game when start button is clicked
 startBtn.addEventListener("click", e=>{
     startGame(e);
+    var userViewIntro = document.getElementById("intro");
+    if(userViewIntro === "none"){
+        userViewIntro.style.display = "block";
+    }else{
+        userViewIntro.style.display = "none";
+        userViewGame.style.display = "block";
+    };
+
     // function to start the game var quizQuestions 
-function startGame (){
-    // initially set score and question tracker to 0
-    questionTracker = 0;
-    // TODO:score = 0;
-    // TODO:
-    timer = 60;
-    gameTimer.innerText = "Time Remaining: ";
-    timerValue.innerText = timer;
-    var runningTimer = setInterval(() =>{
+    function startGame (){
+        // initially set score and question tracker to 0
+        questionTracker = 0;
+        // TODO:score = 0;
+        // TODO:
+        timer = 60;
+        gameTimer.innerText = "Time Remaining: ";
+        timerValue.innerText = timer;
+        var runningTimer = setInterval(() =>{
         timer--;
         gameTimer.innerText = "Time remaining: ";
         timerValue.innerText = timer;
@@ -97,15 +109,15 @@ function startGame (){
             localStorage.setItem("newestScore", timer);
             return window.location.assign("endofgame.html");
         }
-    }, 1000);
+        }, 1000);
 
-    // called the availableQuestions array. Used the spread operator (...) so the quizInformation array can spread it's objects out and then rejoined as an array
-    availableQuestions = [...quizInformation];
-    // console.log("available questions:", availableQuestions);
-    // called function to generate new question
-    generateNewQuestion();
-};
-})
+        // called the availableQuestions array. Used the spread operator (...) so the quizInformation array can spread it's objects out and then rejoined as an array
+        availableQuestions = [...quizInformation];
+        // console.log("available questions:", availableQuestions);
+        // called function to generate new question
+        generateNewQuestion();
+    };
+});
 
 
 function generateNewQuestion(){

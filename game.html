@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pollution Quiz- Play</title>
-    <link rel="stylesheet" href="Styling/style.css">
+    <title>Pollution Quiz</title>
     <link rel="stylesheet" href="Styling/game.css">
 </head>
+
 <body>
     <div class="container">
         <div id="game" class="justify-center flex-column">
@@ -15,42 +16,45 @@
                 <button class="btn" id="start-button">Start Game</button>
             </div>
             <!-- create items with id's to call for score display and question count -->
-            <div id="displayScore">
-                <div id="displayScore-item">
-                    <p class="displayScore-prefix">
-                        Question
-                    </p>
-                    <h1 class="displayScore-main-text" id="questionTracker">1/5</h1>
+            <div id="game-play">
+                <div id="displayScore">
+                    <div id="displayScore-item">
+                        <p class="displayScore-prefix">
+                            Question
+                        </p>
+                        <h1 class="displayScore-main-text" id="questionTracker">1/5</h1>
+                    </div>
+                    <div id="displayScore-item">
+                        <p class="displayScore-prefix" id="game-timer">
+                            Timer
+                        </p>
+                        <h1 class="displayScore-main-text" id="timer-value"></h1>
+                    </div>
                 </div>
-                <div id="displayScore-item">
-                    <p class="displayScore-prefix" id="game-timer">
-                        Timer
-                    </p>
-                    <h1 class="displayScore-main-text" id="timer-value"></h1>
+
+                <h2 id="question">What's the right answer?</h2>
+                <div class="answerSelection">
+                    <p class="answerSelection-prefix">A</p>
+                    <!-- we're going to use a "data-number" to reference this specific p-tag when using javascript -->
+                    <p class="answerSelection-text" data-number="1">Selection 1</p>
                 </div>
-            </div>
-            
-            <h2 id="question">What's the right answer?</h2>
-            <div class="answerSelection">
-                <p class="answerSelection-prefix">A</p>
-                <!-- we're going to use a "data-number" to reference this specific p-tag when using javascript -->
-                <p class="answerSelection-text" data-number="1">Selection 1</p>
-            </div>
-            <div class="answerSelection">
-                <p class="answerSelection-prefix">B</p>
-                <p class="answerSelection-text" data-number="2">Selection 2</p>
-            </div>
-            <div class="answerSelection">
-                <p class="answerSelection-prefix">C</p>
-                <p class="answerSelection-text" data-number="3">Selection 3</p>
-            </div>
-            <div class="answerSelection">
-                <p class="answerSelection-prefix">D</p>
-                <p class="answerSelection-text" data-number="4">Selection 4</p>
+                <div class="answerSelection">
+                    <p class="answerSelection-prefix">B</p>
+                    <p class="answerSelection-text" data-number="2">Selection 2</p>
+                </div>
+                <div class="answerSelection">
+                    <p class="answerSelection-prefix">C</p>
+                    <p class="answerSelection-text" data-number="3">Selection 3</p>
+                </div>
+                <div class="answerSelection">
+                    <p class="answerSelection-prefix">D</p>
+                    <p class="answerSelection-text" data-number="4">Selection 4</p>
+                </div>
             </div>
         </div>
     </div>
-    
+
     <script src="Javascript/game.js"></script>
 </body>
+
 </html>
