@@ -75,9 +75,22 @@ var quizInformation = [
 // variable for total amount of questions in quiz to display on screen for question tracker
 var totalQuestions = 5;
 
+// variables needed for end of game
+var playerName = document.getElementById("playerName");
+var saveHighScoreBtn = document.getElementById("saveHighScoreBtn");
+var finalScore = document.getElementById("finalScore");
+
+// variables used to save newest score achieved to high scores list
+var newestScore = localStorage.getItem("newestScore");
+var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+// console.log("high scores:", highScores);
+var maxHighScores = 5;
+
 // created variable to show/hide intro screen and game play
 var userViewGame = document.getElementById("game-play");
 userViewGame.style.display = "none";
+var endScreen = document.getElementById("end-screen");
+endScreen.style.display = "none";
 
 // created click event to start game when start button is clicked
 startBtn.addEventListener("click", e=>{
@@ -107,7 +120,8 @@ startBtn.addEventListener("click", e=>{
         if(timer === 0 || availableQuestions === 0 || questionTracker > 5){
             clearInterval(runningTimer);
             localStorage.setItem("newestScore", timer);
-            return window.location.assign("endofgame.html");
+            userViewGame.style.display = "none";
+            endScreen.style.display = "block";
         }
         }, 1000);
 
@@ -202,5 +216,42 @@ incrementTimer = num =>{
     timerValue.innerText = timer;
 };
 
+// displaying final score onto the screen
+finalScore.innerText = newestScore;
 
-startGame();
+// created event listener for input field to listen for "key up"
+playerName.addEventListener("keyup", () =>{
+    // console.log("player name:", playerName.value);
+    // created conditional so save score button is disabled until input field is filled out
+    saveHighScoreBtn.disabled = !playerName.value; 
+});
+
+// function used to save high score- called in html for end of game
+function saveHighScore(e){
+    // console.log("clicked save button"); 
+    e.preventDefault();
+
+    // variable to combine new score value with player name
+    var score = {
+        score: newestScore,
+        name: playerName.value
+    };
+    // console.log("score:", score); 
+    // added info to high scores in local storage
+    highScores.push(score);
+    // console.log("high scores:", highScores); 
+
+    // sorted high scores to display highest score first
+    highScores.sort((a, b) => b.score - a.score);
+    // spliced high scores array to only display 5 scores total
+    highScores.splice(5);
+
+    // updated local storage
+    localStorage.setItem("highScore", JSON.stringify(highScores));
+
+    // after high score is saved, we redirect to high scores page
+    window.location.assign("highscores.html");
+};
+
+
+// startGame(); 
