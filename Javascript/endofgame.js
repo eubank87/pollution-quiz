@@ -35,7 +35,7 @@ function saveHighScore(e){
     // console.log("high scores:", highScores); 
 
     // sorted high scores to display highest score first
-    highScores.sort((a, b => b.score - a.score));
+    highScores.sort((a, b) => b.score - a.score);
     // spliced high scores array to only display 5 scores total
     highScores.splice(5);
 

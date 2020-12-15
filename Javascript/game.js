@@ -6,6 +6,7 @@ var answerSelections = Array.from(document.getElementsByClassName("answerSelecti
 //variables to call html items for score/question display
 var questionTrackerText = document.getElementById("questionTracker");
 // TODO: var scoreCount = document.getElementById("score");
+var startBtn = document.getElementById("start-button");
 
 // TODO:
 var gameTimer = document.getElementById("game-timer");
@@ -74,7 +75,10 @@ var quizInformation = [
 // variable for total amount of questions in quiz to display on screen for question tracker
 var totalQuestions = 5;
 
-// function to start the game var quizQuestions 
+// created click event to start game when start button is clicked
+startBtn.addEventListener("click", e=>{
+    startGame(e);
+    // function to start the game var quizQuestions 
 function startGame (){
     // initially set score and question tracker to 0
     questionTracker = 0;
@@ -88,7 +92,7 @@ function startGame (){
         gameTimer.innerText = "Time remaining: ";
         timerValue.innerText = timer;
 
-        if(timer === 0 || availableQuestions === 0 || questionTracker >= 5){
+        if(timer === 0 || availableQuestions === 0 || questionTracker > 5){
             clearInterval(runningTimer);
             localStorage.setItem("newestScore", timer);
             return window.location.assign("endofgame.html");
@@ -101,6 +105,8 @@ function startGame (){
     // called function to generate new question
     generateNewQuestion();
 };
+})
+
 
 function generateNewQuestion(){
     // created conditional so that if there are no more questions in the availableQuestions array or if the question tracker goes above 5(total number of questions), user will be redirected to the end of the game
