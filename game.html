@@ -10,12 +10,13 @@
 
 <body>
     <div class="container">
+                    <!-- created items with id's to call in JS -->
         <div id="game" class="justify-center flex-column">
             <div id="intro" class="justify-center flex-column">
                 <h1>Pollution Quiz</h1>
                 <button class="btn" id="start-button">Start Game</button>
             </div>
-            <!-- create items with id's to call for score display and question count -->
+
             <div id="game-play">
                 <div id="displayScore">
                     <div id="displayScore-item">
@@ -34,20 +35,16 @@
 
                 <h2 id="question">What's the right answer?</h2>
                 <div class="answerSelection">
-                    <p class="answerSelection-prefix">A</p>
-                    <!-- we're going to use a "data-number" to reference this specific p-tag when using javascript -->
+                    <!-- used a "data-number" to reference this specific p-tag when using javascript -->
                     <p class="answerSelection-text" data-number="1">Selection 1</p>
                 </div>
                 <div class="answerSelection">
-                    <p class="answerSelection-prefix">B</p>
                     <p class="answerSelection-text" data-number="2">Selection 2</p>
                 </div>
                 <div class="answerSelection">
-                    <p class="answerSelection-prefix">C</p>
                     <p class="answerSelection-text" data-number="3">Selection 3</p>
                 </div>
                 <div class="answerSelection">
-                    <p class="answerSelection-prefix">D</p>
                     <p class="answerSelection-text" data-number="4">Selection 4</p>
                 </div>
             </div>
@@ -58,11 +55,8 @@
                     <form>
                         <!-- created input field to save username -->
                         <input type="text" name="username" id="playerName" placeholder="player name">
-                        <!-- created a submit button with same class as other buttons for styling, but also gave id of saveHighScoreBtn to use as reference in js later on. Also added an "onclick" event to a function that is written in js for saving high scores. Finally, set button to disabled to prevent saving empty input fields. -->
-                        <button type="submit" class="btn" id="saveHighScoreBtn" onclick="saveHighScore(event)" disabled>Save Score</button>
+                        <button type="submit" class="btn" id="saveHighScoreBtn" disabled>Save Score</button>
                     </form>
-                    <!-- added link to redirect to game start -->
-                    <!-- <a class="btn" href="index.html">Home</a> -->
                     <a class="btn">Play Again</a>
                 </div>
             </div>

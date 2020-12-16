@@ -1,14 +1,11 @@
-:root {
+body {
     background-color: rgb(215, 203, 224);
-    /* putting this weird percent number because we'll be working with rem as a measurement later on */
-    font-size: 62.5%; 
 }
 
 *{
     box-sizing: border-box;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
+    margin: 0 auto;
     color: rgb(108, 103, 112);
 }
 
@@ -17,26 +14,26 @@ h1, h2, h3, h4{
 }
 
 h1{
-    font-size: 5.4rem;
+    font-size: 4rem;
     color: #852ecc;
     margin-bottom: 5rem;
 }
 
-h1 > span{
-    font-size: 2.4rem;
-    font-weight: 500;
+h1.span{
+    font-size: 2rem;
+    text-emphasis: bold;
 }
 
 h2{
-    font-size: 4.2rem;
+    font-size: 2rem;
     margin-bottom: 4rem;
-    font-weight: 700;
+    text-emphasis: bold;
     color: #852ecc;
 }
 
 h3{
-    font-size: 2.8rem;
-    font-weight: 500;
+    font-size: 0.5rem;
+    text-emphasis: bold;
 }
 
 /* UTILITIES */
@@ -44,7 +41,7 @@ h3{
 /* wrap body of html in a div class= container and use flex-box to center all content on page */
 .container{
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,9 +52,6 @@ h3{
 }
 
 /* calling the childeren of the container to continue to center things horizontally*/
-.container > *{
-    width: 100%;
-}
 
 .flex-column{
     display: flex;
@@ -83,30 +77,19 @@ h3{
 
 /* BUTTONS */
 .btn{
-    font-size: 1.8rem;
-    padding: 1rem 0;
-    width: 20rem;
+    font-size: 1.5rem;
     text-align: center;
-    border: 0.1rem solid #852ecc;
+    border: solid #852ecc;
     margin-bottom: 1rem;
-    text-decoration: none; /*by default anchor tags are underlined, but we don't want that*/
     color: #852ecc;
     background-color: white;
 }
 
 /* moving the button up a small amount and adding shadow for effect when we hover over the buttons */
 .btn:hover{
-    cursor: pointer;
-    box-shadow: 0 0.4rem 1.4rem 0 rgb(143, 4, 143, 235);
     transform: translateY(-0.5rem);
-    transition: 150ms;
+    transition: 100ms;
 } 
-
-.btn[disabled]:hover{
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
-}
 
 #intro{
     display: flex;
@@ -119,39 +102,30 @@ h3{
     display: flex;
     margin-bottom: 0.5rem;
     width: 100%;
-    font-size: 1.8rem;
-    border: 0.1rem solid rgba(156, 86, 235, 0.25);
+    font-size: 1.3rem;
     background-color: white;
 }
 
 /* need to add style elements for hover state like buttons */
 .answerSelection:hover{
     cursor: pointer;
-    box-shadow: 0 0.4rem 1.4rem 0 rgb(143, 4, 143, 235);
     transform: translateY(-0.5rem);
     transition: 150ms;
 }
 
-/* now we'll style the answer choices within the container to have their own properties */
-.answerSelection-prefix{
-    padding: 1.5rem 2.5rem;
-    background-color: #852ecc;
-    color: white;
-}
-
 .answerSelection-text{
-    padding: 1.5rem;
     /* need to make text 100% width of choice so no matter where we click on the box we'll alert the user event. */
+    padding: 1.2rem;
     width: 100%;
 }
 
-/* adding styling to different classes depending on whether correct or incorrect. Using color codes from CSS bootstrap */
+/* adding styling to different classes depending on whether right or wrong */
 .right{
-    background-color: #28a745;
+    background-color: green;
 }
 
 .wrong{
-    background-color: #dc3545;
+    background-color: red;
 }
 
 /* styling for score/queston display */
@@ -190,7 +164,3 @@ input::placeholder{
     color: rgba(157, 122, 192, 0.555);
 }
 
-/* removed box shadow from input field */
-#username{
-    box-shadow: none;
-}

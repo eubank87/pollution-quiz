@@ -5,10 +5,8 @@ var answerSelections = Array.from(document.getElementsByClassName("answerSelecti
 // console.log("answer selections:", answerSelections);
 //variables to call html items for score/question display
 var questionTrackerText = document.getElementById("questionTracker");
-// TODO: var scoreCount = document.getElementById("score");
 var startBtn = document.getElementById("start-button");
 
-// TODO:
 var gameTimer = document.getElementById("game-timer");
 var timerValue = document.getElementById("timer-value");
 var timer = 0;
@@ -19,8 +17,7 @@ var scorePenalty = -10;
 var currentQuestion = {};
 // variable to use as conditional for creating delay in between questions. Set to false initially to prevent answers from being selected before next question is displayed
 var gamePlay = false;
-// variable to track score 
-// TODO: var score = 0; 
+
 // variable to track questions 
 var questionTracker = 0;
 // variable set to empty array for loop to use to generate random questions
@@ -70,8 +67,6 @@ var quizInformation = [
     }
 ]
 
-// variable for score increase
-// TODO: var scoreIncrease = 10;
 // variable for total amount of questions in quiz to display on screen for question tracker
 var totalQuestions = 5;
 
@@ -83,6 +78,7 @@ var finalScore = document.getElementById("finalScore");
 // variables used to save newest score achieved to high scores list
 var newestScore = localStorage.getItem("newestScore");
 var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+var saveHighScoreBtn = document.getElementById("saveHighScoreBtn");
 // console.log("high scores:", highScores);
 var maxHighScores = 5;
 
@@ -92,55 +88,47 @@ userViewGame.style.display = "none";
 var endScreen = document.getElementById("end-screen");
 endScreen.style.display = "none";
 
+
 // created click event to start game when start button is clicked
-startBtn.addEventListener("click", e=>{
+startBtn.addEventListener("click", e => {
     startGame(e);
     var userViewIntro = document.getElementById("intro");
-    if(userViewIntro === "none"){
+    if (userViewIntro === "none") {
         userViewIntro.style.display = "block";
-    }else{
+    } else {
         userViewIntro.style.display = "none";
         userViewGame.style.display = "block";
     };
 
-    // function to start the game var quizQuestions 
-    function startGame (){
+    // function to start the game 
+    function startGame() {
         // initially set score and question tracker to 0
         questionTracker = 0;
-        // TODO:score = 0;
-        // TODO:
         timer = 60;
         gameTimer.innerText = "Time Remaining: ";
         timerValue.innerText = timer;
-        var runningTimer = setInterval(() =>{
-        timer--;
-        gameTimer.innerText = "Time remaining: ";
-        timerValue.innerText = timer;
+        var runningTimer = setInterval(() => {
+            timer--;
+            gameTimer.innerText = "Time remaining: ";
+            timerValue.innerText = timer;
 
-        if(timer === 0 || availableQuestions === 0 || questionTracker > 5){
-            clearInterval(runningTimer);
-            localStorage.setItem("newestScore", timer);
-            userViewGame.style.display = "none";
-            endScreen.style.display = "block";
-        }
+            if (timer === 0 || availableQuestions === 0 || questionTracker > 5) {
+                clearInterval(runningTimer);
+                localStorage.setItem("newestScore", timer);
+                userViewGame.style.display = "none";
+                endScreen.style.display = "block";
+            }
         }, 1000);
 
         // called the availableQuestions array. Used the spread operator (...) so the quizInformation array can spread it's objects out and then rejoined as an array
         availableQuestions = [...quizInformation];
-        // console.log("available questions:", availableQuestions);
         // called function to generate new question
         generateNewQuestion();
     };
 });
 
-
-function generateNewQuestion(){
-    // created conditional so that if there are no more questions in the availableQuestions array or if the question tracker goes above 5(total number of questions), user will be redirected to the end of the game
-    // TODO: if(availableQuestions === 0 || questionTracker >= 5){
-    //     // before redirecting, user score is saved to local storage
-    //     localStorage.setItem("newestScore", score);
-    //     return window.location.assign("endofgame.html");
-    // };
+// function to generate new question
+function generateNewQuestion() {
     // increasing question tracker by 1 with each new question generated and updating text
     questionTracker++;
     questionTrackerText.innerText = questionTracker + "/" + totalQuestions;
@@ -153,7 +141,7 @@ function generateNewQuestion(){
     // console.log("quiz question", quizQuestion);
 
     // following same principle for answer selections usinf forEach method
-    answerSelections.forEach(answerSelection =>{
+    answerSelections.forEach(answerSelection => {
         // variable to reference data-set in html 
         var number = answerSelection.dataset["number"];
         // printing selections to the screen that match with corresponding text 
@@ -166,10 +154,10 @@ function generateNewQuestion(){
 };
 
 // using forEach method again to add an event listener to each answer selection
-answerSelections.forEach(answerSelection =>{
-    answerSelection.addEventListener("click", e =>{
+answerSelections.forEach(answerSelection => {
+    answerSelection.addEventListener("click", e => {
         // conditional to ignore event listener until game play is allowed
-        if(!gamePlay){
+        if (!gamePlay) {
             return
         };
         gamePlay = false;
@@ -180,17 +168,11 @@ answerSelections.forEach(answerSelection =>{
 
         // variable to apply color depending on right/wrong answer
         var rightOrWrong = "wrong";
-        // conditional so if answer selected is right, default state of wrong is changed along with corresponding background color from css styling and score is increased
-        // TODO: if(chosenAnswer == currentQuestion.answer){
-        //     rightOrWrong = "right";
-        //     increaseScore(scoreIncrease);
-        // };
-        // console.log("right or wrong", rightOrWrong);
-
-        if(chosenAnswer == currentQuestion.answer){
+        // conditional so if answer selected is right, default state of wrong is changed along with corresponding background color from css styling and timer is increased or decreased
+        if (chosenAnswer == currentQuestion.answer) {
             rightOrWrong = "right";
             incrementTimer(scoreBonus);
-        }else{
+        } else {
             incrementTimer(scorePenalty);
         }
 
@@ -201,18 +183,12 @@ answerSelections.forEach(answerSelection =>{
             chosenSelection.parentElement.classList.remove(rightOrWrong);
             generateNewQuestion();
         }, 400);
-        // console.log(chosenAnswer == currentQuestion.answer);
     });
 });
 
-// function to increase score and update score text on screen
-// TODO: increaseScore = num =>{
-//     score +=num;
-//     scoreCount.innerText = score;
-// };
-// TODO:
-incrementTimer = num =>{
-    timer +=num;
+// function to add/subtract time 
+incrementTimer = num => {
+    timer += num;
     timerValue.innerText = timer;
 };
 
@@ -220,38 +196,30 @@ incrementTimer = num =>{
 finalScore.innerText = newestScore;
 
 // created event listener for input field to listen for "key up"
-playerName.addEventListener("keyup", () =>{
-    // console.log("player name:", playerName.value);
+playerName.addEventListener("keyup", () => {
     // created conditional so save score button is disabled until input field is filled out
-    saveHighScoreBtn.disabled = !playerName.value; 
+    saveHighScoreBtn.disabled = !playerName.value;
 });
 
-// function used to save high score- called in html for end of game
-function saveHighScore(e){
-    // console.log("clicked save button"); 
-    e.preventDefault();
+
+saveHighScoreBtn.addEventListener("click", function () {
+    // function used to save high score- called in html for end of game
+
+    event.preventDefault;
 
     // variable to combine new score value with player name
     var score = {
         score: newestScore,
         name: playerName.value
     };
-    // console.log("score:", score); 
     // added info to high scores in local storage
     highScores.push(score);
-    // console.log("high scores:", highScores); 
-
-    // sorted high scores to display highest score first
-    highScores.sort((a, b) => b.score - a.score);
-    // spliced high scores array to only display 5 scores total
-    highScores.splice(5);
 
     // updated local storage
     localStorage.setItem("highScore", JSON.stringify(highScores));
 
     // after high score is saved, we redirect to high scores page
     window.location.assign("highscores.html");
-};
 
-
-// startGame(); 
+});
+saveHighScore();
