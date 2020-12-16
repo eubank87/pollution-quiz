@@ -65,14 +65,13 @@ var quizInformation = [
         answerSelection4: "All of the above.",
         answer: 4
     }
-]
+];
 
 // variable for total amount of questions in quiz to display on screen for question tracker
 var totalQuestions = 5;
 
 // variables needed for end of game
 var playerName = document.getElementById("playerName");
-var saveHighScoreBtn = document.getElementById("saveHighScoreBtn");
 var finalScore = document.getElementById("finalScore");
 
 // variables used to save newest score achieved to high scores list
@@ -112,9 +111,9 @@ startBtn.addEventListener("click", e => {
             gameTimer.innerText = "Time remaining: ";
             timerValue.innerText = timer;
 
-            if (timer === 0 || availableQuestions === 0 || questionTracker > 5) {
+            if (timer === 0 || questionTracker > 5) {
                 clearInterval(runningTimer);
-                localStorage.setItem("newestScore", timer);
+                localStorage.setItem("newestScore", JSON.stringify(timer));
                 userViewGame.style.display = "none";
                 endScreen.style.display = "block";
             }
@@ -134,11 +133,10 @@ function generateNewQuestion() {
     questionTrackerText.innerText = questionTracker + "/" + totalQuestions;
 
     // variable for question index to generate random question from available questions array
-    var questionIndex = Math.floor(Math.random() * availableQuestions.length);
+    var questionIndex = Math.floor(Math.random(availableQuestions.length));
     // setting current question to a random index within the availabe questions array
     currentQuestion = availableQuestions[questionIndex];
     quizQuestion.innerText = currentQuestion.question;
-    // console.log("quiz question", quizQuestion);
 
     // following same principle for answer selections usinf forEach method
     answerSelections.forEach(answerSelection => {
@@ -149,19 +147,11 @@ function generateNewQuestion() {
     });
     // splicing out question that was used so it doesn't repeat
     availableQuestions.splice(questionIndex, 1);
-    // Now that question is loaded, set gamePlay to true
-    gamePlay = true;
 };
 
 // using forEach method again to add an event listener to each answer selection
 answerSelections.forEach(answerSelection => {
     answerSelection.addEventListener("click", e => {
-        // conditional to ignore event listener until game play is allowed
-        if (!gamePlay) {
-            return
-        };
-        gamePlay = false;
-
         // variables added so click event can be interpreted as user's answer and then verified further down. use dataset from html to track
         var chosenSelection = e.target;
         var chosenAnswer = chosenSelection.dataset["number"];
@@ -202,10 +192,8 @@ playerName.addEventListener("keyup", () => {
 });
 
 
-saveHighScoreBtn.addEventListener("click", function () {
-    // function used to save high score- called in html for end of game
-
-    event.preventDefault;
+saveHighScoreBtn.addEventListener("click", () => {
+    e.preventDefault
 
     // variable to combine new score value with player name
     var score = {
@@ -219,7 +207,6 @@ saveHighScoreBtn.addEventListener("click", function () {
     localStorage.setItem("highScore", JSON.stringify(highScores));
 
     // after high score is saved, we redirect to high scores page
-    window.location.assign("highscores.html");
-
+    // window.location.assign("highscores.html");
+    return "highscores.html";
 });
-saveHighScore();
